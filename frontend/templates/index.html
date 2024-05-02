@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAYMAX</title>
+    <style>
+        /* Inline CSS styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background:linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
+        }
+
+        .container {
+            width: 400px;
+            padding: 20px;
+            background-color: rgba(90, 88, 88, 0.219); /* Slightly transparent white background */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px); /* Add a blur effect to the background */
+        }
+
+        .heading {
+            text-align: center;
+            color: #E3FEF7; /* White text color */
+            margin-bottom: 20px;
+        }
+
+        .start-button {
+            width: 80px;
+            height: 80px;
+            padding: 12px;
+            font-size: 16px;
+            background-color: #2b9284; /* Green button color */
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            animation: pulse 1.5s infinite; /* Apply pulsating animation */
+        }
+
+        .start-button:hover {
+            background-color: #27ae60; /* Dark green on hover */
+        }
+
+        .input-field {
+            width: calc(100% - 24px);
+            margin-top: 20px;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f5f5f5;
+            font-size: 14px;
+            line-height: 1.6;
+            height: 150px;
+            overflow-y: auto;
+            color: #333; /* Dark text color for logs */
+        }
+
+        .output p {
+            margin: 5px 0;
+        }
+
+        /* Animation */
+        @keyframes pulse {
+            0% {
+                transform: scale(0.9);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.9);
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="heading">BAYMAX</h1>
+    <button class="start-button" onclick="handleStartButton()">START</button>
+    <input type="text" class="input-field" id="inputValue" placeholder="Enter your command here...">
+    <div class="output" id="output"></div>
+</div>
+
+<script>
+    function handleStartButton() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/start", true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                document.getElementById("output").innerHTML = xhr.responseText;
+            }
+        };
+        xhr.send();
+    }
+</script>
+</body>
+</html>
