@@ -51,7 +51,7 @@ def wishMe():
     else:
         speak("Good Evening Sir !") 
 
-    assname =("Jarvis 1 point o")
+    assname =("Baymax")
     speak("I am your Assistant")
     speak(assname)
     
@@ -91,16 +91,6 @@ def takeCommand():
     
     return query
 
-def sendEmail(to, content):
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.ehlo()
-    server.starttls()
-    
-    # Enable low security in gmail
-    server.login('your email id', 'your email password')
-    server.sendmail('your email id', to, content)
-    server.close()
-
 if __name__ == '__main__':
     clear = lambda: os.system('cls')
     
@@ -111,57 +101,22 @@ if __name__ == '__main__':
     username()
     
     while True:
-        
+        assname=("Baymax")
         query = takeCommand().lower()
         
         # All the commands said by user will be 
         # stored here in 'query' and will be
         # converted to lower case for easily 
         # recognition of command
-        if 'wikipedia' in query:
-            speak('Searching Wikipedia...')
-            query = query.replace("wikipedia", "")
-            results = wikipedia.summary(query, sentences = 3)
-            speak("According to Wikipedia")
-            print(results)
-            speak(results)
-
-        elif 'open youtube' in query:
-            speak("Here you go to Youtube\n")
-            webbrowser.open("youtube.com")
-
-        elif 'open google' in query:
-            speak("Here you go to Google\n")
-            webbrowser.open("google.com")
-
-        
-
-        elif 'play music' in query or "play song" in query:
-            speak("Here you go with music")
-            # music_dir = "G:\\Song"
-            music_dir = r"C:\Users\Tushar Kulkarni\Music"                       #change dir
-            songs = os.listdir(music_dir)
-            print(songs) 
-            random = os.startfile(os.path.join(music_dir, songs[1]))
-
-        elif 'the time' in query:
-            query_time()
-        
-            
-        elif 'open brave' in query:
-            codePath = r"C:\Users\Tushar Kulkarni\AppData\Local\Programs\Opera GX\launcher.exe"#directory change
-            os.startfile(codePath)
-
-        elif 'open chrome' in query:
-            codePath = r"C:\Users\Tushar Kulkarni\AppData\Local\Programs\Opera GX\launcher.exe"#directory change
-            os.startfile(codePath)
-
-        elif 'how are you' in query:
+        if 'how are you' in query:
             speak("I am fine, Thank you")
             speak("How are you, Sir")
-
+        
         elif 'fine' in query or "good" in query:
             speak("It's good to know that your fine")
+
+        elif "baymax" in query:
+            speak("Baymax 1 point o in your service Mister")
 
         elif "change my name to" in query:
             query = query.replace("change my name to", "")
@@ -177,15 +132,48 @@ if __name__ == '__main__':
             speak(assname)
             print("My friends call me", assname)
 
-            
+        elif 'open youtube' in query:
+            speak("Here you go to Youtube\n")
+            webbrowser.open("youtube.com")
+
+        elif 'open google' in query:
+            speak("Here you go to Google\n")
+            webbrowser.open("google.com")
+
+        elif 'play music' in query or "play song" in query:
+            speak("Here you go with music")
+            # music_dir = "G:\\Song"
+            music_dir = r"C:\\Users\\Spandan\\Music"                       #change dir accordingly
+            songs = os.listdir(music_dir)
+            print(songs) 
+            random = os.startfile(os.path.join(music_dir, songs[1]))
+
+        elif 'the time' in query:
+            query_time()
+                   
+        elif 'open brave' in query:
+            codePath = r"C:\Users\Tushar Kulkarni\AppData\Local\Programs\Opera GX\launcher.exe"#change dir accordingly
+            os.startfile(codePath)
+
+        elif 'open chrome' in query:
+            codePath = r"C:\Users\Tushar Kulkarni\AppData\Local\Programs\Opera GX\launcher.exe"#change dir accordinglye
+            os.startfile(codePath)
+
+        elif 'wikipedia' in query:
+            speak('Searching Wikipedia...')
+            query = query.replace("wikipedia", "")
+            results = wikipedia.summary(query, sentences = 3)
+            speak("According to Wikipedia")
+            print(results)
+            speak(results)
+           
         elif 'joke' in query:
             speak(pyjokes.get_joke())
             
         elif "calculator" in query: 
             
-            codePath = r"C:\Windows\System32\calc.exe"              #directory change
+            codePath = r"C:\\Windows\\System32\\calc.exe"             #change dir accordingly
             os.startfile(codePath)
-
 
         elif 'search' in query or 'play' in query:
             
@@ -197,19 +185,13 @@ if __name__ == '__main__':
             speak("you are my master")
             
 
-        elif "why you came to this world" in query:
+        elif "why you came into this world" in query:
             speak("Thanks to a human. further It's a secret")
 
-        elif 'powerpoint ' in query:
+        elif 'powerpoint presentation' in query:
             speak("opening Power Point presentation")
-            power = r"C:\Program Files\Microsoft Office\root\Office16\POWERPNT.EXE"             #directory change 
+            power = "C:\Program Files\Microsoft Office\root\Office16\POWERPNT.EXE"             #directory change 
             os.startfile(power)
-
-        elif 'Word file' in query:
-            speak("opening word file")
-            word = r"C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE"               #directory change 
-            os.startfile(word)
-
 
         elif 'is love' in query:
             speak("It is 7th sense that destroy all other senses")
@@ -226,7 +208,7 @@ if __name__ == '__main__':
         elif 'news' in query:
             
             try: 
-                jsonObj = urlopen('''https://newsapi.org/v1/articles?source=the-times-of-india&sortBy=top&apiKey=\\times of India Api key\\''')
+                jsonObj = urlopen("https://newsapi.org/v1/articles?source=the-times-of-india&sortBy=top&apiKey=e04e172367d94da282f92dc22604a3c8")
                 data = json.load(jsonObj)
                 i = 1
                 
@@ -268,9 +250,6 @@ if __name__ == '__main__':
             file = open("jarvis.txt", "r") 
             print(file.read())
             speak(file.read(6))             
-        
-        elif "jarvis" in query:
-            speak("Jarvis 1 point o in your service Mister")
         
         elif "search web " in query:
             pywhatkit.search(query)
